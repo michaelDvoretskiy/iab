@@ -1,0 +1,15 @@
+{
+    "name": "mariia/iab",
+    "description": "project for the IAB discipline",
+    "autoload": {
+        "psr-4": {
+            "Mariia\\Iab\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mariia Dvoretska"
+        }
+    ],
+    "require": {}
+}
