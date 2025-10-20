@@ -1,3 +1,25 @@
+<?php
+try {
+    $dbConnection = new mysqli(
+        'localhost',
+        'root',
+        '',
+        'iab',
+        3306
+    );
+} catch (Exception $e) {
+    die('Connection failed: ' . $e->getMessage());
+}
+
+try {
+    $stmt = $dbConnection->prepare('SELECT id, name FROM roles order by name');
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $roles = $result->fetch_all(MYSQLI_ASSOC);
+} catch (Exception $e) {
+    die('sql failed: ' . $e->getMessage());
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +28,13 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello world</h1>
-    <h2>Current date and time is: 
+    <h2>User roles</h2>
+    <div> 
         <?php 
-            echo (new DateTime())->format('Y-m-d H:i:s');
+        foreach ($roles as $role) {
+            echo '<p>' . $role['id'] . ' : ' . $role['name'] . '</p>';
+        }
         ?>
-    </h2>
+    </div>
 </body>
 </html>
