@@ -10,7 +10,7 @@
     <div> 
         <?php 
         foreach ($params['roles'] as $role) {
-            echo '<p>' . $role['id'] . ' : ' . $role['name'] . '</p>';
+            echo '<p>' . $role->getId() . ' : ' . $role->getName() . '</p>';
         }
         ?>
     </div>

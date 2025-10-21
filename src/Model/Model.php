@@ -1,13 +1,14 @@
 <?php
 
-namespace Mariia\Iab;
+namespace Mariia\Iab\Model;
 
 use Exception;
+use Mariia\Iab\Model\Repository\Repository;
 use mysqli;
 
-class DBReader
+class Model
 {
-    private ?mysqli $dbConnection = null;
+    public ?mysqli $dbConnection = null;
     private string $host = 'localhost';
     private string $user = 'root';
     private string $password = '';
@@ -22,7 +23,7 @@ class DBReader
             die('Connection failed: ' . $e->getMessage());
         }
     }
-
+    
     private function connect(): void
     {
         $this->dbConnection = new mysqli(
@@ -32,18 +33,5 @@ class DBReader
             $this->dbName,
             $this->port
         );
-    }
-
-    public function getRoles(): array
-    {
-        try {
-            $stmt = $this->dbConnection->prepare('SELECT id, name FROM roles order by name');
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            return $result->fetch_all(MYSQLI_ASSOC);
-        } catch (Exception $e) {
-            die('sql failed: ' . $e->getMessage());
-        }
     }
 }
