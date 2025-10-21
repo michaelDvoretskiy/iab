@@ -10,8 +10,7 @@ class App
     public function run(): void
     {
         $model = new Model();
-        $roleRepository = new RoleRepository($model->dbConnection);
-        $roles = $roleRepository->findAll();
+        $roles = $model->getRepository('Role')->findAll();
 
         $uiMaker = new UIMaker();
         $uiMaker->renderRoles($roles);

@@ -8,12 +8,14 @@ use mysqli;
 
 class Model
 {
-    public ?mysqli $dbConnection = null;
+    private ?mysqli $dbConnection = null;
     private string $host = 'localhost';
     private string $user = 'root';
     private string $password = '';
     private string $dbName = 'iab';
     private int $port = 3306;
+
+    private array $repositories = [];
 
     public function __construct()
     {
@@ -23,6 +25,27 @@ class Model
             die('Connection failed: ' . $e->getMessage());
         }
     }
+
+    public function getRepository(string $name): Repository
+    {
+        if (!isset($this->repositories[$name])) {
+            $this->repositories[$name] = $this->createRepository($name);
+        }
+
+        return $this->repositories[$name];
+    }
+
+    private function createRepository(string $name): ?Repository
+    {
+        $repositoryClass = 'Mariia\\Iab\\Model\\Repository\\' . $name . 'Repository';
+
+        if (class_exists($repositoryClass)) {
+            return new $repositoryClass($this->dbConnection);
+        }
+
+        return null;
+    }
+
     
     private function connect(): void
     {
