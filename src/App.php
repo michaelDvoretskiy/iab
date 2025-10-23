@@ -16,6 +16,12 @@ class App
             'controller' => 'RoleController',
             'action' => 'listRoles',
         ],
+        [
+            'path' => 'roles/view-one',
+            'method' => 'GET',
+            'controller' => 'RoleController',
+            'action' => 'viewRole',
+        ],
     ];
 
     public function __construct()

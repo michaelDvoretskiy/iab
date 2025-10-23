@@ -10,6 +10,17 @@ class RoleController extends Controller
         $roles = $model->getRepository('Role')->findAll();
 
         $uiMaker = $this->app->getUIMaker();
-        $uiMaker->render('roles', ['roles' => $roles]);
+        $uiMaker->render('roles/list', ['roles' => $roles]);
+    }
+
+    public function viewRole(): void
+    {
+        $roleId = $_GET['id'] ?? null;
+
+        $model = $this->app->getModel();
+        $role = $model->getRepository('Role')->findById($roleId);
+
+        $uiMaker = $this->app->getUIMaker();
+        $uiMaker->render('roles/view', ['role' => $role]);
     }
 }

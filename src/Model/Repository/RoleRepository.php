@@ -25,9 +25,15 @@ class RoleRepository extends Repository
 
     public function findById(int $id): ?Role
     {
-        return null;
+        $stmt = $this->dbConnection->prepare('SELECT id, name FROM roles WHERE id = ?');
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        return $this->mapRowToEntity($row);
     }
-    
+
     public function save(Entity $role): void
     {        
         /** @var Role $role */
