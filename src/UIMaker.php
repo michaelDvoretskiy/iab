@@ -4,9 +4,9 @@ namespace Mariia\Iab;
 
 class UIMaker
 {
-    public function renderRoles(array $roles): void
+    public function render(string $template, array $params = []): void
     {
-        $params = ['roles' => $roles];
-        include __DIR__ . '/templates/roles.php';
+        $template = __DIR__ . '/templates/' . $template . '.php';
+        include __DIR__ . '/templates/layout.php';
     }
 }
