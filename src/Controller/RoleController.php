@@ -2,6 +2,8 @@
 
 namespace Mariia\Iab\Controller;
 
+use Mariia\Iab\Model\Entity\Role;
+
 class RoleController extends Controller
 {
     public function listRoles(): void
@@ -22,5 +24,22 @@ class RoleController extends Controller
 
         $uiMaker = $this->app->getUIMaker();
         $uiMaker->render('roles/view', ['role' => $role]);
+    }
+
+    public function addRoleForm(): void
+    {
+        $uiMaker = $this->app->getUIMaker();
+        $uiMaker->render('roles/add');
+    }
+
+    public function addRole(): void
+    {
+        $roleName = $_POST['name'] ?? '';
+
+        $model = $this->app->getModel();
+        $role = new Role(null, $roleName);
+        $model->getRepository('Role')->save($role);
+
+        $this->listRoles();
     }
 }

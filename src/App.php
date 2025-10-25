@@ -22,6 +22,18 @@ class App
             'controller' => 'RoleController',
             'action' => 'viewRole',
         ],
+        [
+            'path' => 'roles/add',
+            'method' => 'GET',
+            'controller' => 'RoleController',
+            'action' => 'addRoleForm',
+        ],
+        [
+            'path' => 'roles/add',
+            'method' => 'POST',
+            'controller' => 'RoleController',
+            'action' => 'addRole',
+        ],
     ];
 
     public function __construct()

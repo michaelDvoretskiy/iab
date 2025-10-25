@@ -35,9 +35,18 @@ class RoleRepository extends Repository
     }
 
     public function save(Entity $role): void
-    {        
+    {
         /** @var Role $role */
-        return;
+        if ($role->getId() === null) {
+            $stmt = $this->dbConnection->prepare('INSERT INTO roles (name) VALUES (?)');
+            $stmt->bind_param('s', $role->getName());
+            $stmt->execute();
+            $role->setId($this->dbConnection->insert_id);
+        } else {
+            $stmt = $this->dbConnection->prepare('UPDATE roles SET name = ? WHERE id = ?');
+            $stmt->bind_param('si', $role->getName(), $role->getId());
+            $stmt->execute();
+        }
     }
 
     public function delete(int $id): void
