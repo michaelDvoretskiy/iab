@@ -40,7 +40,7 @@ class RoleController extends Controller
         $role = new Role(null, $roleName);
         $model->getRepository('Role')->save($role);
 
-        $this->listRoles();
+        header('Location: /roles');
     }
 
     public function editRoleForm(): void
@@ -66,6 +66,14 @@ class RoleController extends Controller
         $role->setName($roleName);
         $roleRepo->save($role);
 
-        $this->listRoles();
+        header('Location: /roles');
+    }
+
+    public function deleteRole(): void
+    {
+        $roleId = $_GET['id'] ?? null;
+
+        $model = $this->app->getModel();
+        $model->getRepository('Role')->delete($roleId);
     }
 }

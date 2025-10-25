@@ -51,7 +51,9 @@ class RoleRepository extends Repository
 
     public function delete(int $id): void
     {
-        return;
+        $stmt = $this->dbConnection->prepare('DELETE FROM roles WHERE id = ?');
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
     }
 
     protected function mapRowToEntity(array $row): Role

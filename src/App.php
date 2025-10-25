@@ -46,6 +46,12 @@ class App
             'controller' => 'RoleController',
             'action' => 'editRole',
         ],
+        [
+            'path' => 'roles/delete',
+            'method' => 'POST',
+            'controller' => 'RoleController',
+            'action' => 'deleteRole',
+        ],
     ];
 
     public function __construct()
