@@ -42,4 +42,30 @@ class RoleController extends Controller
 
         $this->listRoles();
     }
+
+    public function editRoleForm(): void
+    {
+        $roleId = $_GET['id'] ?? null;
+        $model = $this->app->getModel();
+        $role = $model->getRepository('Role')->findById($roleId);
+
+        $uiMaker = $this->app->getUIMaker();
+        $uiMaker->render('roles/edit', ['role' => $role]);
+    }
+
+    public function editRole(): void
+    {
+        $roleName = $_POST['name'] ?? '';
+        $roleId = $_GET['id'] ?? null;
+
+        $model = $this->app->getModel();
+        $roleRepo = $model->getRepository('Role');
+
+        /** @var Role $role */
+        $role = $roleRepo->findById($roleId);
+        $role->setName($roleName);
+        $roleRepo->save($role);
+
+        $this->listRoles();
+    }
 }
