@@ -6,6 +6,16 @@ use Mariia\Iab\Model\Entity\Role;
 
 class RoleController extends Controller
 {
+    public static array $routes = [
+        ['path' => 'roles', 'method' => 'GET', 'action' => 'listRoles'],
+        ['path' => 'roles/view-one', 'method' => 'GET', 'action' => 'viewRole'],
+        ['path' => 'roles/add', 'method' => 'GET', 'action' => 'addRoleForm'],
+        ['path' => 'roles/add', 'method' => 'POST', 'action' => 'addRole'],
+        ['path' => 'roles/edit', 'method' => 'GET', 'action' => 'editRoleForm'],
+        ['path' => 'roles/edit', 'method' => 'POST', 'action' => 'editRole'],
+        ['path' => 'roles/delete', 'method' => 'POST', 'action' => 'deleteRole'],
+    ];
+
     public function listRoles(): void
     {
         $model = $this->app->getModel();
