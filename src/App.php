@@ -52,6 +52,48 @@ class App
             'controller' => 'RoleController',
             'action' => 'deleteRole',
         ],
+        [
+            'path' => 'users',
+            'method' => 'GET',
+            'controller' => 'UserController',
+            'action' => 'list',
+        ],
+        [
+            'path' => 'users/view',
+            'method' => 'GET',
+            'controller' => 'UserController',
+            'action' => 'view',
+        ],
+        [
+            'path' => 'users/add',
+            'method' => 'GET',
+            'controller' => 'UserController',
+            'action' => 'addForm',
+        ],
+        [
+            'path' => 'users/add',
+            'method' => 'POST',
+            'controller' => 'UserController',
+            'action' => 'add',
+        ],
+        [
+            'path' => 'users/edit',
+            'method' => 'GET',
+            'controller' => 'UserController',
+            'action' => 'editForm',
+        ],
+        [
+            'path' => 'users/edit',
+            'method' => 'POST',
+            'controller' => 'UserController',
+            'action' => 'edit',
+        ],
+        [
+            'path' => 'users/delete',
+            'method' => 'POST',
+            'controller' => 'UserController',
+            'action' => 'delete',
+        ],
     ];
 
     public function __construct()
