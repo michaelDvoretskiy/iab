@@ -1,4 +1,4 @@
-<h2>User roles</h2>
+<h2>Users</h2>
 <a href="/users/add">Add new</a>
 <div>
     <table>

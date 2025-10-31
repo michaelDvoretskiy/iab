@@ -6,7 +6,7 @@ use Mariia\Iab\Model\Entity\Author;
 use Mariia\Iab\Model\Entity\Entity;
 use Mariia\Iab\Model\Entity\User;
 
-class UserRepository extends Repository
+class AuthorRepository extends Repository
 {
     public function findAll(): array
     {
@@ -66,14 +66,17 @@ class UserRepository extends Repository
 
     public function delete(int $id): void
     {
-        $stmt = $this->dbConnection->prepare('DELETE FROM users WHERE id = ?');
+        $stmt = $this->dbConnection->prepare('DELETE FROM authors WHERE id = ?');
         $stmt->bind_param('i', $id);
         $stmt->execute();
     }
 
     protected function mapRowToEntity(array $row): Author
     {
-        $user = new User($row['user_id'], $row['login'], $row['email'], $row['password']);
+        $user = null;
+        if ($row['user_id']) {
+            $user = new User($row['user_id'], $row['login'], $row['email'], $row['password']);
+        }        
 
         return new Author($row['id'], $row['name'], $user, $row['items_count']);
     }

@@ -2,6 +2,7 @@
 
 namespace Mariia\Iab;
 
+use Mariia\Iab\Controller\AuthorController;
 use Mariia\Iab\Controller\RoleController;
 use Mariia\Iab\Controller\UserController;
 use Mariia\Iab\Model\Model;
@@ -14,6 +15,7 @@ class App
     private array $controllers = [
         RoleController::class,
         UserController::class,
+        AuthorController::class,
     ];
 
     public function __construct()
