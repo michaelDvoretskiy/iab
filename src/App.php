@@ -2,62 +2,29 @@
 
 namespace Mariia\Iab;
 
+use Mariia\Iab\Controller\AuthorController;
+use Mariia\Iab\Controller\HomepageController;
+use Mariia\Iab\Controller\RoleController;
+use Mariia\Iab\Controller\UserController;
 use Mariia\Iab\Model\Model;
 
 class App
 {
     private Model $model;
     private UIMaker $uiMaker;
-
-    private array $routes = [
-        [
-            'path' => 'roles',
-            'method' => 'GET',
-            'controller' => 'RoleController',
-            'action' => 'listRoles',
-        ],
-        [
-            'path' => 'roles/view-one',
-            'method' => 'GET',
-            'controller' => 'RoleController',
-            'action' => 'viewRole',
-        ],
-        [
-            'path' => 'roles/add',
-            'method' => 'GET',
-            'controller' => 'RoleController',
-            'action' => 'addRoleForm',
-        ],
-        [
-            'path' => 'roles/add',
-            'method' => 'POST',
-            'controller' => 'RoleController',
-            'action' => 'addRole',
-        ],
-        [
-            'path' => 'roles/edit',
-            'method' => 'GET',
-            'controller' => 'RoleController',
-            'action' => 'editRoleForm',
-        ],
-        [
-            'path' => 'roles/edit',
-            'method' => 'POST',
-            'controller' => 'RoleController',
-            'action' => 'editRole',
-        ],
-        [
-            'path' => 'roles/delete',
-            'method' => 'POST',
-            'controller' => 'RoleController',
-            'action' => 'deleteRole',
-        ],
+    private array $routes = [];
+    private array $controllers = [
+        RoleController::class,
+        UserController::class,
+        AuthorController::class,
+        HomepageController::class,
     ];
 
     public function __construct()
     {
         $this->model = new Model();
         $this->uiMaker = new UIMaker();
+        $this->attachControllerRoutes();
     }
 
     public function run(): void
@@ -68,9 +35,8 @@ class App
         $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
         foreach ($this->routes as $route) {
             if ($route['path'] === $path && $route['method'] === $method) {
-                $controllerName = $route['controller'];
                 $actionName = $route['action'];
-                $controllerClass = "Mariia\\Iab\\Controller\\$controllerName";
+                $controllerClass = $route['controller'];
                 $controller = new $controllerClass($this);
                 $controller->$actionName();
 
@@ -89,5 +55,15 @@ class App
     public function getUIMaker(): UIMaker
     {
         return $this->uiMaker;
+    }
+
+    private function attachControllerRoutes(): void
+    {
+        foreach ($this->controllers as $controller) {
+            foreach ($controller::$routes as $route) {
+                $route['controller'] = $controller;
+                $this->routes[] = $route;
+            }
+        }
     }
 }
