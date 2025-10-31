@@ -3,6 +3,7 @@
 namespace Mariia\Iab;
 
 use Mariia\Iab\Controller\AuthorController;
+use Mariia\Iab\Controller\HomepageController;
 use Mariia\Iab\Controller\RoleController;
 use Mariia\Iab\Controller\UserController;
 use Mariia\Iab\Model\Model;
@@ -16,6 +17,7 @@ class App
         RoleController::class,
         UserController::class,
         AuthorController::class,
+        HomepageController::class,
     ];
 
     public function __construct()

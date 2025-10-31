@@ -76,7 +76,7 @@ class AuthorRepository extends Repository
         $user = null;
         if ($row['user_id']) {
             $user = new User($row['user_id'], $row['login'], $row['email'], $row['password']);
-        }        
+        }
 
         return new Author($row['id'], $row['name'], $user, $row['items_count']);
     }

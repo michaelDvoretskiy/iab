@@ -6,6 +6,7 @@
     <title>Handmade project</title>
 </head>
 <body>
+    <?php include __DIR__ . '/menu.php'; ?>
     <h1>This is my handmade project</h1>
     <?php include $template; ?>
 </body>
