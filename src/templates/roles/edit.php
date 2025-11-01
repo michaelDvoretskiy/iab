@@ -1,5 +1,5 @@
 <h2>Edit Role</h2>
-<a href="/roles">Back to the list</a>
+<a href="/roles" class="button-link secondary">Back to the list</a>
 <form method="post" action="/roles/edit/?id=<?= $params['role']->getId() ?>">
     <div>
         <label for="role-name">Role Name:</label>

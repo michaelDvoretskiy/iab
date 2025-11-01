@@ -1,5 +1,5 @@
 <h2>Edit Author</h2>
-<a href="/authors">Back to the list</a>
+<a href="/authors" class="button-link secondary">Back to the list</a>
 <form method="post" action="/authors/edit/?id=<?= $params['author']->getId() ?>" id="edit-author-form">
     <div>
         <label for="author-name">Name:</label>

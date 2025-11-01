@@ -1,5 +1,5 @@
 <h2>Authors</h2>
-<a href="/authors/add">Add new</a>
+<a href="/authors/add" class="button-link">Add new</a>
 <div>
     <table>
         <tr>
@@ -14,9 +14,9 @@
                 <td><?= $author->getName() ?></td>
                 <td><?= $author->getUser()?->getLogin() ?></td>
                 <td>
-                    <a href="/authors/view?id=<?= $author->getId() ?>">View</a>
-                    <a href="/authors/edit?id=<?= $author->getId() ?>">Edit</a>                    
-                    <a href="#" onclick="deleteAuthor(<?= $author->getId() ?>)">Delete</a>
+                    <a class="button-link outline" href="/authors/view?id=<?= $author->getId() ?>">View</a>
+                    <a class="button-link outline" href="/authors/edit?id=<?= $author->getId() ?>">Edit</a>                    
+                    <a class="button-link outline" href="#" onclick="deleteAuthor(<?= $author->getId() ?>)">Delete</a>
                 </td>
             </tr>
         <?php endforeach; ?>

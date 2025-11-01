@@ -1,5 +1,5 @@
 <h2>Edit User</h2>
-<a href="/roles">Back to the list</a>
+<a href="/roles" class="button-link secondary">Back to the list</a>
 <form method="post" action="/users/edit/?id=<?= $params['user']->getId() ?>" id="edit-user-form">
     <div>
         <label for="user-login">Login:</label>

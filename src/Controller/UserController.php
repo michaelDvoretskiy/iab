@@ -8,7 +8,7 @@ class UserController extends Controller
 {
     public static array $routes = [
         ['path' => 'users', 'method' => 'GET', 'action' => 'list'],
-        ['path' => 'users/view-one', 'method' => 'GET', 'action' => 'view'],
+        ['path' => 'users/view', 'method' => 'GET', 'action' => 'view'],
         ['path' => 'users/add', 'method' => 'GET', 'action' => 'addForm'],
         ['path' => 'users/add', 'method' => 'POST', 'action' => 'add'],
         ['path' => 'users/edit', 'method' => 'GET', 'action' => 'editForm'],

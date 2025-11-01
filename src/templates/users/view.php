@@ -1,6 +1,6 @@
 <h2>User</h2>
 <div> 
-    <a href="/users">Back to the list</a>
+    <a href="/users" class="button-link secondary">Back to the list</a>
     <table>
         <tr>
             <th>Field</th>
