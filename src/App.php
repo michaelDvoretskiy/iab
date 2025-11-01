@@ -6,6 +6,7 @@ use Mariia\Iab\Controller\AuthorController;
 use Mariia\Iab\Controller\HomepageController;
 use Mariia\Iab\Controller\RoleController;
 use Mariia\Iab\Controller\UserController;
+use Mariia\Iab\Controller\UserRoleController;
 use Mariia\Iab\Model\Model;
 
 class App
@@ -18,6 +19,7 @@ class App
         UserController::class,
         AuthorController::class,
         HomepageController::class,
+        UserRoleController::class,
     ];
 
     public function __construct()

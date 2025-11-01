@@ -15,7 +15,8 @@
                 <td><?= $user->getEmail() ?></td>
                 <td>
                     <a class="button-link outline" href="/users/view?id=<?= $user->getId() ?>">View</a>
-                    <a class="button-link outline" href="/users/edit?id=<?= $user->getId() ?>">Edit</a>                    
+                    <a class="button-link outline" href="/users/edit?id=<?= $user->getId() ?>">Edit</a>
+                    <a class="button-link outline" href="/user-roles?userId=<?= $user->getId() ?>">Edit roles</a>                    
                     <a class="button-link outline" href="#" onclick="deleteUser(<?= $user->getId() ?>)">Delete</a>
                 </td>
             </tr>
