@@ -20,7 +20,7 @@ class UserRoleController extends Controller
 
     public function __construct(App $app)
     {
-        parent::__construct($app);        
+        parent::__construct($app);
     }
 
     public function list(): void

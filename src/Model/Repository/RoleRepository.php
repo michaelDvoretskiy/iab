@@ -56,8 +56,12 @@ class RoleRepository extends Repository
         $stmt->execute();
     }
 
-    protected function mapRowToEntity(array $row): Role
+    protected function mapRowToEntity(?array $row): ?Role
     {
+        if (is_null($row)) {
+            return null;
+        }
+
         return new Role($row['id'], $row['name']);
     }
 }

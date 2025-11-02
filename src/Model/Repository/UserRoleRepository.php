@@ -95,8 +95,12 @@ class UserRoleRepository extends Repository
         $stmt->execute();
     }
 
-    protected function mapRowToEntity(array $row): UserRole
+    protected function mapRowToEntity(?array $row): ?UserRole
     {
+        if (is_null($row)) {
+            return null;
+        }
+
         $user = new User($row['user_id'], $row['login'], '', '');
         $role = new Role($row['role_id'], $row['name']);
 

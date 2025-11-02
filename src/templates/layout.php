@@ -7,8 +7,12 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <?php include __DIR__ . '/menu.php'; ?>
-    <h1>This is my handmade project</h1>
+    <?php if ($params['showMenu'] ?? true) : ?>
+        <?php include __DIR__ . '/menu.php'; ?>
+    <?php endif; ?>
+    <?php if ($params['showHead'] ?? true) : ?>
+        <h1>This is my handmade project</h1>
+    <?php endif; ?>
     <?php include $template; ?>
 </body>
 </html>
