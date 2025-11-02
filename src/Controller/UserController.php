@@ -7,13 +7,13 @@ use Mariia\Iab\Model\Entity\User;
 class UserController extends Controller
 {
     public static array $routes = [
-        ['path' => 'users', 'method' => 'GET', 'action' => 'list'],
-        ['path' => 'users/view', 'method' => 'GET', 'action' => 'view'],
-        ['path' => 'users/add', 'method' => 'GET', 'action' => 'addForm'],
-        ['path' => 'users/add', 'method' => 'POST', 'action' => 'add'],
-        ['path' => 'users/edit', 'method' => 'GET', 'action' => 'editForm'],
-        ['path' => 'users/edit', 'method' => 'POST', 'action' => 'edit'],
-        ['path' => 'users/delete', 'method' => 'POST', 'action' => 'delete'],
+        ['path' => 'users', 'method' => 'GET', 'action' => 'list', 'security' => 'isAdmin'],
+        ['path' => 'users/view', 'method' => 'GET', 'action' => 'view', 'security' => 'isAdmin'],
+        ['path' => 'users/add', 'method' => 'GET', 'action' => 'addForm', 'security' => 'isAdmin'],
+        ['path' => 'users/add', 'method' => 'POST', 'action' => 'add', 'security' => 'isAdmin'],
+        ['path' => 'users/edit', 'method' => 'GET', 'action' => 'editForm', 'security' => 'isAdmin'],
+        ['path' => 'users/edit', 'method' => 'POST', 'action' => 'edit', 'security' => 'isAdmin'],
+        ['path' => 'users/delete', 'method' => 'POST', 'action' => 'delete', 'security' => 'isAdmin'],
     ];
 
     public function list(): void

@@ -47,6 +47,16 @@ class App
             if ($route['path'] === $path && $route['method'] === $method) {
                 $actionName = $route['action'];
                 $controllerClass = $route['controller'];
+                $permited = true;
+                if ($route['security'] ?? false) {
+                    $securityCheckMethod = $route['security'];
+                    $permited = $this->currentUser->$securityCheckMethod();
+                }
+                if (!$permited) {
+                    $this->uiMaker->render('error', ['errorText' => 'no permissions for this operation']);
+
+                    return;
+                }
                 $controller = new $controllerClass($this);
                 $controller->$actionName();
 

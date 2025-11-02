@@ -9,13 +9,13 @@ use Mariia\Iab\Model\Entity\UserRole;
 class UserRoleController extends Controller
 {
     public static array $routes = [
-        ['path' => 'user-roles', 'method' => 'GET', 'action' => 'list'],
-        ['path' => 'user-roles/view', 'method' => 'GET', 'action' => 'view'],
-        ['path' => 'user-roles/add', 'method' => 'GET', 'action' => 'addForm'],
-        ['path' => 'user-roles/add', 'method' => 'POST', 'action' => 'add'],
-        ['path' => 'user-roles/edit', 'method' => 'GET', 'action' => 'editForm'],
-        ['path' => 'user-roles/edit', 'method' => 'POST', 'action' => 'edit'],
-        ['path' => 'user-roles/delete', 'method' => 'POST', 'action' => 'delete'],
+        ['path' => 'user-roles', 'method' => 'GET', 'action' => 'list', 'security' => 'isAdmin'],
+        ['path' => 'user-roles/view', 'method' => 'GET', 'action' => 'view', 'security' => 'isAdmin'],
+        ['path' => 'user-roles/add', 'method' => 'GET', 'action' => 'addForm', 'security' => 'isAdmin'],
+        ['path' => 'user-roles/add', 'method' => 'POST', 'action' => 'add', 'security' => 'isAdmin'],
+        ['path' => 'user-roles/edit', 'method' => 'GET', 'action' => 'editForm', 'security' => 'isAdmin'],
+        ['path' => 'user-roles/edit', 'method' => 'POST', 'action' => 'edit', 'security' => 'isAdmin'],
+        ['path' => 'user-roles/delete', 'method' => 'POST', 'action' => 'delete', 'security' => 'isAdmin'],
     ];
 
     public function __construct(App $app)
