@@ -34,6 +34,17 @@ class UserRepository extends Repository
         return $this->mapRowToEntity($row);
     }
 
+    public function findByLogin(string $login): ?User
+    {
+        $stmt = $this->dbConnection->prepare('SELECT id, login, email, password FROM users WHERE login = ?');
+        $stmt->bind_param('s', $login);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        return $this->mapRowToEntity($row);
+    }
+
     public function save(Entity $user): void
     {
         /** @var User $user */
@@ -56,8 +67,12 @@ class UserRepository extends Repository
         $stmt->execute();
     }
 
-    protected function mapRowToEntity(array $row): User
+    protected function mapRowToEntity(?array $row): ?User
     {
+        if (is_null($row)) {
+            return null;
+        }
+
         return new User($row['id'], $row['login'], $row['email'], $row['password']);
     }
 }

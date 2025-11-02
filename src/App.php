@@ -6,7 +6,10 @@ use Mariia\Iab\Controller\AuthorController;
 use Mariia\Iab\Controller\HomepageController;
 use Mariia\Iab\Controller\RoleController;
 use Mariia\Iab\Controller\UserController;
+use Mariia\Iab\Controller\UserRoleController;
+use Mariia\Iab\Model\Entity\User;
 use Mariia\Iab\Model\Model;
+use Mariia\Iab\Service\UserService;
 
 class App
 {
@@ -18,13 +21,20 @@ class App
         UserController::class,
         AuthorController::class,
         HomepageController::class,
+        UserRoleController::class,
     ];
+
+    public UserService $userService;
+    public ?User $currentUser;
 
     public function __construct()
     {
-        $this->model = new Model();
-        $this->uiMaker = new UIMaker();
+        session_start();
         $this->attachControllerRoutes();
+        $this->model = new Model();
+        $this->userService = new UserService($this);
+        $this->currentUser = $this->userService->getCurrentUser();
+        $this->uiMaker = new UIMaker($this->currentUser);
     }
 
     public function run(): void
@@ -37,6 +47,16 @@ class App
             if ($route['path'] === $path && $route['method'] === $method) {
                 $actionName = $route['action'];
                 $controllerClass = $route['controller'];
+                $permited = true;
+                if ($route['security'] ?? false) {
+                    $securityCheckMethod = $route['security'];
+                    $permited = $this->currentUser->$securityCheckMethod();
+                }
+                if (!$permited) {
+                    $this->uiMaker->render('error', ['errorText' => 'no permissions for this operation']);
+
+                    return;
+                }
                 $controller = new $controllerClass($this);
                 $controller->$actionName();
 

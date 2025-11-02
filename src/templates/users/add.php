@@ -1,5 +1,5 @@
 <h2>Add New User</h2>
-<a href="/users">Back to the list</a>
+<a href="/users" class="button-link secondary">Back to the list</a>
 <form method="post" action="/users/add" id="add-user-form">
     <div>
         <label for="user-login">Login:</label>

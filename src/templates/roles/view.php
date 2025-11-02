@@ -1,6 +1,6 @@
 <h2>User role</h2>
 <div> 
-    <a href="/roles">Back to the list</a>
+    <a href="/roles" class="button-link secondary">Back to the list</a>
     <table>
         <tr>
             <th>Field</th>

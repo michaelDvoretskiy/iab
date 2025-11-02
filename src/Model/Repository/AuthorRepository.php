@@ -71,7 +71,7 @@ class AuthorRepository extends Repository
         $stmt->execute();
     }
 
-    protected function mapRowToEntity(array $row): Author
+    protected function mapRowToEntity(?array $row): ?Author
     {
         $user = null;
         if ($row['user_id']) {

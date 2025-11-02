@@ -7,13 +7,13 @@ use Mariia\Iab\Model\Entity\Author;
 class AuthorController extends Controller
 {
     public static array $routes = [
-        ['path' => 'authors', 'method' => 'GET', 'action' => 'list'],
-        ['path' => 'authors/view', 'method' => 'GET', 'action' => 'view'],
-        ['path' => 'authors/add', 'method' => 'GET', 'action' => 'addForm'],
-        ['path' => 'authors/add', 'method' => 'POST', 'action' => 'add'],
-        ['path' => 'authors/edit', 'method' => 'GET', 'action' => 'editForm'],
-        ['path' => 'authors/edit', 'method' => 'POST', 'action' => 'edit'],
-        ['path' => 'authors/delete', 'method' => 'POST', 'action' => 'delete'],
+        ['path' => 'authors', 'method' => 'GET', 'action' => 'list', 'security' => 'canEdit'],
+        ['path' => 'authors/view', 'method' => 'GET', 'action' => 'view', 'security' => 'canEdit'],
+        ['path' => 'authors/add', 'method' => 'GET', 'action' => 'addForm', 'security' => 'canEdit'],
+        ['path' => 'authors/add', 'method' => 'POST', 'action' => 'add', 'security' => 'canEdit'],
+        ['path' => 'authors/edit', 'method' => 'GET', 'action' => 'editForm', 'security' => 'canEdit'],
+        ['path' => 'authors/edit', 'method' => 'POST', 'action' => 'edit', 'security' => 'canEdit'],
+        ['path' => 'authors/delete', 'method' => 'POST', 'action' => 'delete', 'security' => 'canEdit'],
     ];
 
     public function list(): void

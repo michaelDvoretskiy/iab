@@ -1,5 +1,5 @@
 <h2>Users</h2>
-<a href="/users/add">Add new</a>
+<a href="/users/add" class="button-link">Add new</a>
 <div>
     <table>
         <tr>
@@ -14,9 +14,10 @@
                 <td><?= $user->getLogin() ?></td>
                 <td><?= $user->getEmail() ?></td>
                 <td>
-                    <a href="/users/view?id=<?= $user->getId() ?>">View</a>
-                    <a href="/users/edit?id=<?= $user->getId() ?>">Edit</a>                    
-                    <a href="#" onclick="deleteUser(<?= $user->getId() ?>)">Delete</a>
+                    <a class="button-link outline" href="/users/view?id=<?= $user->getId() ?>">View</a>
+                    <a class="button-link outline" href="/users/edit?id=<?= $user->getId() ?>">Edit</a>
+                    <a class="button-link outline" href="/user-roles?userId=<?= $user->getId() ?>">Edit roles</a>                    
+                    <a class="button-link outline" href="#" onclick="deleteUser(<?= $user->getId() ?>)">Delete</a>
                 </td>
             </tr>
         <?php endforeach; ?>

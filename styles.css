@@ -1,0 +1,259 @@
+/* === Base styling === */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, sans-serif;
+}
+
+body {
+    background: #f5f5f5;
+    padding: 20px;
+    color: #333;
+}
+
+/* === Navigation === */
+
+ul {
+    list-style: none;
+    background: #fff;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+ul li a:hover {
+    color: #0077cc;
+}
+
+/* === Page Heading === */
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+/* === Buttons / Links === */
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a.button {
+    display: inline-block;
+    margin-bottom: 15px;
+    background: #0077cc;
+    color: #fff !important;
+    padding: 8px 14px;
+    border-radius: 6px;
+}
+
+a.button:hover {
+    background: #005fa3;
+}
+
+/* === Table === */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+thead {
+    background: #0077cc;
+    color: #fff;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background: #f0f6ff;
+}
+
+tr:hover {
+    background: #e2edff;
+}
+
+/* Actions styling */
+
+td a {
+    margin-right: 8px;
+}
+
+td a.delete {
+    color: #cc0000;
+}
+
+td a.delete:hover {
+    text-decoration: underline;
+}
+
+/* === Responsive === */
+
+@media (max-width: 600px) {
+    table, thead, tbody, tr, th, td {
+        display: block;
+        width: 100%;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 10px;
+        background: #fff;
+    }
+
+    td {
+        padding: 8px;
+        position: relative;
+    }
+
+    td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        display: block;
+        margin-bottom: 3px;
+        color: #555;
+    }
+}
+
+/* === Form styling === */
+
+form {
+    max-width: 500px;
+    background: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+form div {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+input[type="text"], input[type="password"],
+select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus,
+select:focus {
+    border-color: #0077cc;
+    outline: none;
+}
+
+button[type="submit"] {
+    background: #0077cc;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button[type="submit"]:hover {
+    background: #005fa3;
+}
+
+/* Back link as inline button-like link */
+a.back-link {
+    display: inline-block;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+/* Mobile: make form full width */
+@media (max-width: 600px) {
+    form {
+        width: 100%;
+        padding: 15px;
+    }
+}
+
+.button-link {
+    display: inline-block;
+    background: #0077cc;
+    color: #fff !important;
+    padding: 7px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.button-link:hover {
+    background: #005fa3;
+    text-decoration: none;
+}
+
+.button-link:active {
+    background: #004b87;
+    text-decoration: none;
+}
+
+.button-link.secondary {
+    background: #ddd;
+    color: #333 !important;
+}
+
+.button-link.secondary:hover {
+    background: #c7c7c7;
+}
+
+.button-link.outline {
+    background: transparent;
+    border: 1px solid #0077cc;
+    color: #0077cc !important;
+    margin: 0px;
+}
+
+.button-link.outline:hover {
+    background: #b5d1f6;
+}

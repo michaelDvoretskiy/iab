@@ -19,5 +19,5 @@ abstract class Repository
 
     abstract public function delete(int $id): void;
 
-    abstract protected function mapRowToEntity(array $row): Entity;
+    abstract protected function mapRowToEntity(?array $row): ?Entity;
 }

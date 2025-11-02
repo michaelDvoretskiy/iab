@@ -1,5 +1,5 @@
 <h2>Add New Author</h2>
-<a href="/authors">Back to the list</a>
+<a href="/authors" class="button-link secondary">Back to the list</a>
 <form method="post" action="/authors/add" id="add-user-form">
     <div>
         <label for="author-name">Name:</label>
