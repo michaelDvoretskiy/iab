@@ -5,15 +5,21 @@
     <li>
         <a href="/">Home</a>
     </li>
-    <li>
-        <a href="/users">Users</a>
-    </li>
-    <li>
-        <a href="/roles">Roles</a>
-    </li>
-    <li>
-        <a href="/authors">Authors</a>
-    </li>
+    <?php if ($params['currentUser']?->isAdmin()) : ?>
+        <li>
+            <a href="/users">Users</a>
+        </li>
+    <?php endif; ?>
+    <?php if ($params['currentUser']?->isAdmin()) : ?>
+        <li>
+            <a href="/roles">Roles</a>
+        </li>
+    <?php endif; ?>
+    <?php if ($params['currentUser']?->canEdit()) : ?>
+        <li>
+            <a href="/authors">Authors</a>
+        </li>
+    <?php endif; ?>
     <li>
         <?php if ($params['currentUser']) : ?>
             <a href="/logout">Logout</a>

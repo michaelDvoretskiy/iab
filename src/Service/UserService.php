@@ -4,6 +4,7 @@ namespace Mariia\Iab\Service;
 
 use Mariia\Iab\Model\Entity\User;
 use Mariia\Iab\Model\Repository\UserRepository;
+use Mariia\Iab\Model\Repository\UserRoleRepository;
 
 class UserService extends Service
 {
@@ -21,6 +22,12 @@ class UserService extends Service
         /** @var UserRepository $userRepo */
         $userRepo = $model->getRepository('User');
         $user = $userRepo->findByLogin($_SESSION['user_identifier']);
+
+        /** @var UserRoleRepository $userRoleRepo */
+        $userRoleRepo = $model->getRepository('UserRole');
+        $user->setUserRoles(
+            $userRoleRepo->findByUser($user->getId())
+        );
 
         return $user;
     }

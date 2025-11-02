@@ -7,6 +7,7 @@ class User extends Entity
     private string $login;
     private string $email;
     private string $passowrd;
+    private array $userRoles;
 
     public function __construct(
         ?int $id = null,
@@ -64,6 +65,47 @@ class User extends Entity
     public function checkPassword(string $plainPassword): bool
     {
         return password_verify($plainPassword, $this->passowrd);
+    }
+
+    public function setUserRoles(array $userRoles): void
+    {
+        $this->userRoles = $userRoles;
+    }
+
+    public function isAdmin(): bool
+    {
+        /** @var UserRole $role */
+        foreach ($this->userRoles as $role) {
+            if ($role->getRole()->getName() == 'Admin') {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function canEdit(): bool
+    {
+        /** @var UserRole $role */
+        foreach ($this->userRoles as $role) {
+            if ($role->getRole()->getName() == 'Editor') {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function canRead(): bool
+    {
+        /** @var UserRole $role */
+        foreach ($this->userRoles as $role) {
+            if (in_array($role->getRole()->getName(), ['Editor', 'Reader'])) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private function encriptPassword(string $plainPassword): string
