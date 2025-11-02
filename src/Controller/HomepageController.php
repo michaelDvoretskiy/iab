@@ -3,6 +3,7 @@
 namespace Mariia\Iab\Controller;
 
 use Mariia\Iab\Model\Repository\UserRepository;
+use Mariia\Iab\Service\UserService;
 
 class HomepageController extends Controller
 {
@@ -10,6 +11,7 @@ class HomepageController extends Controller
         ['path' => '', 'method' => 'GET', 'action' => 'index'],
         ['path' => 'login', 'method' => 'GET', 'action' => 'showLogin'],
         ['path' => 'login', 'method' => 'POST', 'action' => 'login'],
+        ['path' => 'logout', 'method' => 'GET', 'action' => 'logout'],
     ];
 
     public function index(): void
@@ -18,13 +20,13 @@ class HomepageController extends Controller
         $uiMaker->render('home');
     }
 
-    public function showLogin()
+    public function showLogin(): void
     {
         $uiMaker = $this->app->getUIMaker();
         $uiMaker->render('login', ['showMenu' => false, 'showHead' => false]);
     }
 
-    public function login()
+    public function login(): void
     {
         $login = $_POST['username'];
         $password = $_POST['password'];
@@ -42,6 +44,17 @@ class HomepageController extends Controller
 
             return;
         }
+        $userService = $this->app->userService;
+        $userService->saveUserIdentifier($user->getLogin());
+
+        header('Location: /');
+    }
+
+    public function logout(): void
+    {
+        $userService = $this->app->userService;
+        $userService->clearCurrentUser();
+
         header('Location: /');
     }
 }

@@ -7,7 +7,9 @@ use Mariia\Iab\Controller\HomepageController;
 use Mariia\Iab\Controller\RoleController;
 use Mariia\Iab\Controller\UserController;
 use Mariia\Iab\Controller\UserRoleController;
+use Mariia\Iab\Model\Entity\User;
 use Mariia\Iab\Model\Model;
+use Mariia\Iab\Service\UserService;
 
 class App
 {
@@ -22,11 +24,17 @@ class App
         UserRoleController::class,
     ];
 
+    public UserService $userService;
+    public ?User $currentUser;
+
     public function __construct()
     {
-        $this->model = new Model();
-        $this->uiMaker = new UIMaker();
+        session_start();
         $this->attachControllerRoutes();
+        $this->model = new Model();
+        $this->userService = new UserService($this);
+        $this->currentUser = $this->userService->getCurrentUser();
+        $this->uiMaker = new UIMaker($this->currentUser);
     }
 
     public function run(): void
